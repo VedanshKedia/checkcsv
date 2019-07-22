@@ -13,8 +13,10 @@ def form_upload(request):
         if form.is_valid():
             file = form.save(commit=False)
             file.save()
-            return HttpResponse(request, 'home.html')
+            return render(request, 'home.html', {'result': 'File Uploaded successfully'})
             # render(request, 'home.html')
+        else:
+            return render(request,'document_form_upload.html', {'form': form})
     else:
         form = DocumentForm()
         print(form)
